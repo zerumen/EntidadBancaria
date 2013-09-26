@@ -15,18 +15,28 @@ public class MovimientoBancario {
     
     private int idMovimientoBancario;
     private TipoMovimientoBancario movimiento;
-    private int importe;
+    private BigDecimal importe;
     private Date fecha;
     private BigDecimal saldo;
     private String concepto;
+    private CuentaBancaria cuentaBancaria;
 
-    public MovimientoBancario(int idMovimientoBancario, TipoMovimientoBancario movimiento, int importe, Date fecha, BigDecimal saldo, String concepto) {
+    public MovimientoBancario(int idMovimientoBancario, TipoMovimientoBancario movimiento, BigDecimal importe, Date fecha, BigDecimal saldo, String concepto, CuentaBancaria cuentaBancaria) {
         this.idMovimientoBancario = idMovimientoBancario;
         this.movimiento = movimiento;
         this.importe = importe;
         this.fecha = fecha;
         this.saldo = saldo;
         this.concepto = concepto;
+        this.cuentaBancaria=cuentaBancaria;
+    }
+
+    public CuentaBancaria getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 
     public MovimientoBancario() {
@@ -48,11 +58,11 @@ public class MovimientoBancario {
         this.movimiento = movimiento;
     }
 
-    public int getImporte() {
+    public BigDecimal getImporte() {
         return importe;
     }
 
-    public void setImporte(int importe) {
+    public void setImporte(BigDecimal importe) {
         this.importe = importe;
     }
 

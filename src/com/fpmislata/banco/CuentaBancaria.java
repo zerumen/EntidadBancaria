@@ -5,6 +5,8 @@
 package com.fpmislata.banco;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,12 +16,13 @@ public class CuentaBancaria {
     
     private int idCuentaBancaria;
     private Sucursal sucursalBancaria;
-    private int numeroCuenta;
-    private int dc;
+    private String numeroCuenta;
+    private String dc;
     private BigDecimal saldo;
     private String cif;
+    private List<MovimientoBancario> movBan=new ArrayList<>();
 
-    public CuentaBancaria(int idCuentaBancaria, Sucursal sucursalBancaria, int numeroCuenta, int dc, BigDecimal saldo, String cif) {
+    public CuentaBancaria(int idCuentaBancaria, Sucursal sucursalBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.sucursalBancaria = sucursalBancaria;
         this.numeroCuenta = numeroCuenta;
@@ -48,19 +51,19 @@ public class CuentaBancaria {
         this.sucursalBancaria = sucursalBancaria;
     }
 
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public int getDc() {
+    public String getDc() {
         return dc;
     }
 
-    public void setDc(int dc) {
+    public void setDc(String dc) {
         this.dc = dc;
     }
 
@@ -79,6 +82,14 @@ public class CuentaBancaria {
 
     public void setCif(String cif) {
         this.cif = cif;
+    }
+
+    public List<MovimientoBancario> getMovBan() {
+        return movBan;
+    }
+
+    public void setMovBan(List<MovimientoBancario> movBan) {
+        this.movBan = movBan;
     }
     
     

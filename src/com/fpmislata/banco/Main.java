@@ -4,6 +4,8 @@
  */
 package com.fpmislata.banco;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author alumno
@@ -11,7 +13,25 @@ package com.fpmislata.banco;
 public class Main {
     
      public static void main(String[] args) {
-        // TODO code application logic here
+        EntidadBancaria entidadBancaria1=new EntidadBancaria(1,"v50","Bankia","B5642354",TipoentidadBancaria.BANCO );
+        EntidadBancaria entidadBancaria2=new EntidadBancaria(2,"v51","Bankia","B5645258",TipoentidadBancaria.BANCO );
+        
+        Sucursal sucursal1=new Sucursal(1,"m31","Malilla",entidadBancaria1);
+            entidadBancaria1.getSucursalesBancarias().add(sucursal1);
+        Sucursal sucursal2=new Sucursal(2,"t40","Torrent",entidadBancaria2);
+            entidadBancaria2.getSucursalesBancarias().add(sucursal2);
+        
+        
+        CuentaBancaria cuenta1=new CuentaBancaria(224,sucursal1,"142575135","50",new BigDecimal("0"),"B3454322");
+            sucursal1.getCuentasBan().add(cuenta1);
+        CuentaBancaria cuenta2=new CuentaBancaria(335,sucursal2,"424554552","50",new BigDecimal("700"),"H254455");
+            sucursal2.getCuentasBan().add(cuenta2);
+        
+        MovimientoBancario movimiento1=new MovimientoBancario(50, TipoMovimientoBancario.DEBE, new BigDecimal("50"),null ,new BigDecimal("650"), "Pago Deuda",cuenta1);
+            cuenta1.getMovBan().add(movimiento1);
+        MovimientoBancario movimiento2=new MovimientoBancario(55, TipoMovimientoBancario.HABER, new BigDecimal("50"), null,new BigDecimal("1500"), "Pago Deuda",cuenta2);
+            cuenta2.getMovBan().add(movimiento2);
+        
     }
     
 }
