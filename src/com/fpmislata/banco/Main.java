@@ -5,6 +5,7 @@
 package com.fpmislata.banco;
 
 import java.math.BigDecimal;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -27,9 +28,9 @@ public class Main {
         CuentaBancaria cuenta2=new CuentaBancaria(335,sucursal2,"424554552","50",new BigDecimal("700"),"H254455");
             sucursal2.getCuentasBan().add(cuenta2);
         
-        MovimientoBancario movimiento1=new MovimientoBancario(50, TipoMovimientoBancario.DEBE, new BigDecimal("50"),null ,new BigDecimal("650"), "Pago Deuda",cuenta1);
+        MovimientoBancario movimiento1=new MovimientoBancario(50, TipoMovimientoBancario.DEBE, new BigDecimal("50"),new GregorianCalendar(2008,10,12).getTime() ,new BigDecimal("650"), "Pago Deuda",cuenta1);
             cuenta1.getMovBan().add(movimiento1);
-        MovimientoBancario movimiento2=new MovimientoBancario(55, TipoMovimientoBancario.HABER, new BigDecimal("50"), null,new BigDecimal("1500"), "Pago Deuda",cuenta2);
+        MovimientoBancario movimiento2=new MovimientoBancario(55, TipoMovimientoBancario.HABER, new BigDecimal("50"), new GregorianCalendar(2012,9,5).getTime(),new BigDecimal("1500"), "Pago Deuda",cuenta2);
             cuenta1.getMovBan().add(movimiento2);
             
         detalleMov(cuenta1);
@@ -41,7 +42,7 @@ public class Main {
          System.out.println("Numero de cuenta :"+cuentaBancaria.getNumeroCuenta()+" DC :"+cuentaBancaria.getDc()+" Cod sucursal :"+cuentaBancaria.getSucursalBancaria().getCodigoSucursal()+" Codigo Entidad :"+cuentaBancaria.getSucursalBancaria().getEntidadBancaria().getCodigoEntidad());
          
       for(MovimientoBancario movimientoBancario : cuentaBancaria.getMovBan()){
-          System.out.println("Id Movimiento: " +movimientoBancario.getIdMovimientoBancario()+" Importe Movimiento : "+ movimientoBancario.getImporte()+ " Tipo movimiento : " +movimientoBancario.getMovimiento());
+          System.out.println("Id Movimiento: " +movimientoBancario.getIdMovimientoBancario()+" Importe Movimiento : "+ movimientoBancario.getImporte()+ " Tipo movimiento : " +movimientoBancario.getMovimiento()+" Fecha :"+movimientoBancario.getFecha());
       }   
          
      }
