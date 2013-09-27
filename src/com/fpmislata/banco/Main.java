@@ -5,6 +5,7 @@
 package com.fpmislata.banco;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /**
@@ -33,16 +34,20 @@ public class Main {
         MovimientoBancario movimiento2=new MovimientoBancario(55, TipoMovimientoBancario.HABER, new BigDecimal("50"), new GregorianCalendar(2012,9,5).getTime(),new BigDecimal("1500"), "Pago Deuda",cuenta2);
             cuenta1.getMovimientoBancario().add(movimiento2);
             
+            
+          
         detalleMov(cuenta1);
             
         
         
     }
-     public static void detalleMov(CuentaBancaria cuentaBancaria){
+     public static void detalleMov(CuentaBancaria cuentaBancaria){//Devuelve los datos de la cuenta bancaria
          System.out.println("Numero de cuenta :"+cuentaBancaria.getNumeroCuenta()+" DC :"+cuentaBancaria.getDc()+" Cod sucursal :"+cuentaBancaria.getSucursalBancaria().getCodigoSucursal()+" Codigo Entidad :"+cuentaBancaria.getSucursalBancaria().getEntidadBancaria().getCodigoEntidad());
          
-      for(MovimientoBancario movimientoBancario : cuentaBancaria.getMovimientoBancario()){
-          System.out.println(" Importe Movimiento : "+ movimientoBancario.getImporte()+ " Tipo movimiento : " +movimientoBancario.getMovimiento()+" Fecha :"+movimientoBancario.getFecha());
+         SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/YYYY");//cambia la fecha y la convierte.
+         
+      for(MovimientoBancario movimientoBancario : cuentaBancaria.getMovimientoBancario()){//devuelve el importe del movimiento.
+          System.out.println("Importe Movimiento : "+ movimientoBancario.getImporte()+ " Tipo movimiento : " +movimientoBancario.getMovimiento()+" Fecha:"+fecha.format(movimientoBancario.getFecha()));
       }   
          
      }
