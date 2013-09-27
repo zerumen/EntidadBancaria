@@ -30,8 +30,20 @@ public class Main {
         MovimientoBancario movimiento1=new MovimientoBancario(50, TipoMovimientoBancario.DEBE, new BigDecimal("50"),null ,new BigDecimal("650"), "Pago Deuda",cuenta1);
             cuenta1.getMovBan().add(movimiento1);
         MovimientoBancario movimiento2=new MovimientoBancario(55, TipoMovimientoBancario.HABER, new BigDecimal("50"), null,new BigDecimal("1500"), "Pago Deuda",cuenta2);
-            cuenta2.getMovBan().add(movimiento2);
+            cuenta1.getMovBan().add(movimiento2);
+            
+        detalleMov(cuenta1);
+            
+        
         
     }
+     public static void detalleMov(CuentaBancaria cuentaBancaria){
+         System.out.println("Numero de cuenta :"+cuentaBancaria.getNumeroCuenta()+" DC :"+cuentaBancaria.getDc()+" Cod sucursal :"+cuentaBancaria.getSucursalBancaria().getCodigoSucursal()+" Codigo Entidad :"+cuentaBancaria.getSucursalBancaria().getEntidadBancaria().getCodigoEntidad());
+         
+      for(MovimientoBancario movimientoBancario : cuentaBancaria.getMovBan()){
+          System.out.println("Id Movimiento: " +movimientoBancario.getIdMovimientoBancario()+" Importe Movimiento : "+ movimientoBancario.getImporte()+ " Tipo movimiento : " +movimientoBancario.getMovimiento());
+      }   
+         
+     }
     
 }
