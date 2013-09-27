@@ -20,7 +20,7 @@ public class CuentaBancaria {
     private String dc;
     private BigDecimal saldo;
     private String cif;
-    private List<MovimientoBancario> movBan=new ArrayList<>();
+    private List<MovimientoBancario> movimientoBancario=new ArrayList<>();
 
     public CuentaBancaria(int idCuentaBancaria, Sucursal sucursalBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
         this.idCuentaBancaria = idCuentaBancaria;
@@ -84,12 +84,12 @@ public class CuentaBancaria {
         this.cif = cif;
     }
 
-    public List<MovimientoBancario> getMovBan() {
-        return movBan;
+    public List<MovimientoBancario> getMovimientoBancario() {
+        return movimientoBancario;
     }
 
-    public void setMovBan(List<MovimientoBancario> movBan) {
-        this.movBan = movBan;
+    public void setMovimientoBan(List<MovimientoBancario> movBan) {
+        this.movimientoBancario = movimientoBancario;
     }
     
     
