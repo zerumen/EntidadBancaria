@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  *
@@ -18,11 +19,29 @@ public class Main {
 
      public static void main(String[] args) throws ClassNotFoundException, SQLException {
          EntidadBancariaDAO entidadDAO= new EntidadBancariaDAO();
-        // EntidadBancaria entidad=entidadDAO.read(1);
-       // EntidadBancaria entidad=new EntidadBancaria(45,"60","Burgos","B534663",TipoentidadBancaria.BANCO);
-        // entidadDAO.Insert(entidad);
+         //try {
+             EntidadBancaria entidad=entidadDAO.read(45);
+         //} catch (Exception e) {
+             System.out.println("Walter Jr MOLA");
+         
+        
+//        EntidadBancaria entidad=new EntidadBancaria(45,"60","Burgos","B534663",TipoentidadBancaria.BANCO);
+//        entidad=new EntidadBancaria(45,"60","Burgos","B534663",TipoentidadBancaria.BANCO);
+//         entidadDAO.Insert(entidad);
         // System.out.println(entidad.getNombre());
-         entidadDAO.Delete(45);
+//         List<EntidadBancaria> entidadesBancarias;
+//         
+//         entidadesBancarias = entidadDAO.findByCodigo("53");
+//         
+//         for(EntidadBancaria entidadBancaria:entidadesBancarias){
+//             
+//             System.out.println(entidadBancaria.getIdEntidadBancaria());
+//             System.out.println(entidadBancaria.getCodigoEntidad());
+//             System.out.println(entidadBancaria.getNombre());
+//             System.out.println(entidadBancaria.getCif());
+//             System.out.println(entidadBancaria.getEntidad().toString());
+             
+         }
          
       /*  EntidadBancaria entidadBancaria1=new EntidadBancaria(1,"v50","Bankia","B5642354",TipoentidadBancaria.BANCO );
         EntidadBancaria entidadBancaria2=new EntidadBancaria(2,"v51","Bankia","B5645258",TipoentidadBancaria.BANCO );
@@ -63,5 +82,4 @@ public class Main {
      
         
     
-}
 }
