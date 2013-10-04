@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco;
+package com.fpmislata.banco.presentacion;
 
+import com.fpmislata.banco.modelo.EntidadBancaria;
+import com.fpmislata.banco.datos.EntidadBancariaDAO;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -17,7 +19,7 @@ import java.util.List;
 public class Main {
     
 
-     public static void main(String[] args) throws ClassNotFoundException, SQLException {
+     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
          EntidadBancariaDAO entidadDAO= new EntidadBancariaDAO();
          //try {
              EntidadBancaria entidad=entidadDAO.read(45);

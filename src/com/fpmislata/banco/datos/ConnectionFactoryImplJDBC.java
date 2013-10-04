@@ -1,5 +1,7 @@
+package com.fpmislata.banco.datos;
 
-import com.fpmislata.banco.ConnectionFactory;
+
+import com.fpmislata.banco.datos.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
