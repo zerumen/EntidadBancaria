@@ -22,8 +22,8 @@ public class Main {
        // EntidadBancaria entidad=new EntidadBancaria(45,"60","Burgos","B534663",TipoentidadBancaria.BANCO);
         // entidadDAO.Insert(entidad);
         // System.out.println(entidad.getNombre());
-         EntidadBancaria entidad=new EntidadBancaria(45,"60","OVIEDO","B534663",TipoentidadBancaria.BANCO);
-         entidadDAO.Update(entidad);
+         entidadDAO.Delete(45);
+         
       /*  EntidadBancaria entidadBancaria1=new EntidadBancaria(1,"v50","Bankia","B5642354",TipoentidadBancaria.BANCO );
         EntidadBancaria entidadBancaria2=new EntidadBancaria(2,"v51","Bankia","B5645258",TipoentidadBancaria.BANCO );
         

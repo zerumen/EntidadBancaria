@@ -90,7 +90,15 @@ public class EntidadBancariaDAO {
         System.out.println("modificado registro!");
     }
     
-    void Delete(EntidadBancaria entidadBancaria){
+    void Delete(int entidadBancaria) throws SQLException{
+        String deleteSQL = "DELETE from entidadbancaria WHERE idEntidad = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
+        preparedStatement.setInt(1,entidadBancaria);
+// execute delete SQL stetement
+        preparedStatement.executeUpdate();
+        
+        System.out.println("Eliminado registro!!");
+        connection.close();
         
     }
     
