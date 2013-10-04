@@ -18,28 +18,23 @@ import java.util.List;
  */
 public class EntidadBancariaDAO {
 
-    Connection connection = null;
-    ResultSet resultset = null;
+   ConnectionFactory connectionFactory;
     
     EntidadBancariaDAO() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco","root", "root");
+       
         
     }
     
     
-    EntidadBancaria read(int idEntidad) throws SQLException{
-        EntidadBancaria entidadbancaria;
+    EntidadBancaria read(int idEntidad) throws SQLException, Exception{
+        Connection connection=connectionFactory.getConnection();
         String userid;
         String selectSQL = "SELECT idEntidad,codigoEntidad,nombre,CIF,tipoEntidadBancaria FROM entidadBancaria WHERE idEntidad = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         preparedStatement.setInt(1, idEntidad);
-        resultset = preparedStatement.executeQuery();
-        
-        
-        
-        
-        
+        ResultSet resultset = preparedStatement.executeQuery();
+        EntidadBancaria entidadbancaria;
+
         if(resultset.next()==true){
         entidadbancaria=new EntidadBancaria();
         entidadbancaria.setIdEntidadBancaria(resultset.getInt("idEntidad"));
@@ -58,13 +53,13 @@ public class EntidadBancariaDAO {
                 throw runtimeException;
                 
         }
-        
+        connection.close();
         return entidadbancaria;
     
     }
     
-    void Insert(EntidadBancaria entidadBancaria) throws SQLException{
-        
+    void Insert(EntidadBancaria entidadBancaria) throws SQLException, Exception{
+        Connection connection=connectionFactory.getConnection();
         String insertTableSQL = "INSERT INTO entidadBancaria"
 		+ "(idEntidad, codigoEntidad, nombre, cif,tipoEntidadBancaria) VALUES"
 		+ "(?,?,?,?,?)";
@@ -73,28 +68,31 @@ public class EntidadBancariaDAO {
         preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
         preparedStatement.setString(3, entidadBancaria.getNombre());
         preparedStatement.setString(4, entidadBancaria.getCif());
-        preparedStatement.setString(5, entidadBancaria.getEntidad().toString());
+        preparedStatement.setString(5, entidadBancaria.getEntidad().name());
 
         preparedStatement .executeUpdate();
         System.out.println("Insertado registro!");
+        connection.close();
     }
     
-    void Update(EntidadBancaria entidadBancaria) throws SQLException{
-        
+    void Update(EntidadBancaria entidadBancaria) throws SQLException, Exception{
+        Connection connection=connectionFactory.getConnection();
         String updateTableSQL = "UPDATE entidadBancaria SET codigoentidad = ?, nombre = ?, cif = ?,tipoEntidadBancaria = ? WHERE idEntidad = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(updateTableSQL);
         
         preparedStatement.setString(1, entidadBancaria.getCodigoEntidad());
         preparedStatement.setString(2, entidadBancaria.getNombre());
         preparedStatement.setString(3, entidadBancaria.getCif());
-        preparedStatement.setString(4, entidadBancaria.getEntidad().toString());
+        preparedStatement.setString(4, entidadBancaria.getEntidad().name());
         preparedStatement.setInt(5, entidadBancaria.getIdEntidadBancaria());
 // execute insert SQL stetement
         preparedStatement .executeUpdate();
         System.out.println("modificado registro!");
+        connection.close();
     }
     
-    void Delete(int entidadBancaria) throws SQLException{
+    void Delete(int entidadBancaria) throws SQLException, Exception{
+        Connection connection=connectionFactory.getConnection();
         String deleteSQL = "DELETE from entidadbancaria WHERE idEntidad = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
         preparedStatement.setInt(1,entidadBancaria);
@@ -106,12 +104,13 @@ public class EntidadBancariaDAO {
         
     }
     
-    List<EntidadBancaria> findAll() throws SQLException{
+    List<EntidadBancaria> findAll() throws SQLException, Exception{
+        Connection connection=connectionFactory.getConnection();
         List <EntidadBancaria> entidadBancarias=new ArrayList();
         EntidadBancaria entidadBancaria;
         String listaSQL="SELECT idEntidad,codigoEntidad, nombre, cif, tipoEntidadBancaria from entidadbancaria";
         PreparedStatement preparedStatement= connection.prepareStatement(listaSQL);
-        resultset = preparedStatement.executeQuery();
+        ResultSet resultset = preparedStatement.executeQuery();
         
         while(resultset.next()==true){
         entidadBancaria=new EntidadBancaria();
@@ -124,18 +123,19 @@ public class EntidadBancariaDAO {
         entidadBancaria.setEntidad(TipoentidadBancaria.valueOf(tipoEntidadBancaria));
         entidadBancarias.add(entidadBancaria);
         }
+        connection.close();
         return entidadBancarias;
         
     }
     
-    List<EntidadBancaria> findByCodigo(String codigo) throws SQLException{
-        
+    List<EntidadBancaria> findByCodigo(String codigo) throws SQLException, Exception{
+        Connection connection=connectionFactory.getConnection();
        List <EntidadBancaria> entidadBancarias=new ArrayList();
         EntidadBancaria entidadBancaria;
         String listaSQL="SELECT idEntidad,codigoEntidad, nombre, cif, tipoEntidadBancaria from entidadbancaria where codigoEntidad = ?";
         PreparedStatement preparedStatement= connection.prepareStatement(listaSQL);
          preparedStatement.setString(1, codigo);
-        resultset = preparedStatement.executeQuery();
+        ResultSet resultset = preparedStatement.executeQuery();
         
         while(resultset.next()==true){
         entidadBancaria=new EntidadBancaria();
@@ -148,6 +148,7 @@ public class EntidadBancariaDAO {
         entidadBancaria.setEntidad(TipoentidadBancaria.valueOf(tipoEntidadBancaria));
         entidadBancarias.add(entidadBancaria);
         }
+        connection.close();
         return entidadBancarias;
         
     }
